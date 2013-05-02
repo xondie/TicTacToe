@@ -72,47 +72,46 @@ public class TicTacToe
     }
     
     /**
-	 * Play the current token in the specified square.
-	 *
-	 * @param row Row number of the space to place the token.
-	 * @param column Column number of the space to place the token.
-	 * @throws IllegalArgumentException
-	 */
-	public void placeToken(Token token, int row, int column)
-	throws IllegalArgumentException
-	{
-	    // Make sure the right token is playing this turn
-	    if(token != getNextTurn())
-	        throw new IllegalArgumentException(
-	        		String.format("ERROR: %s, it is not your turn.", token));
+     * Play the current token in the specified square.
+     * 
+     * @param row Row number of the space to place the token.
+     * @param column Column number of the space to place the token.
+     * @throws IllegalArgumentException
+     */
+    public void placeToken(Token token, int row, int column)
+            throws IllegalArgumentException
+    {
+        // Make sure the right token is playing this turn
+        if (token != getNextTurn())
+            throw new IllegalArgumentException(String.format("ERROR: %s, it is not your turn.", token));
         // Make sure it's a valid square
-	    if(row>this.boardSize || column>this.boardSize)
-	    	throw new IllegalArgumentException(
-	    			String.format("ERROR: Your chose an invalid square. Row and column must be between 1 and %d", this.boardSize));
-	    // If the game is already over, no more tokens can be played.
-	    if(isGameOver)
-	        throw new IllegalStateException(
-	        		String.format("ERROR: This game is over already."));
-	
-	    // Place the token iff the square is unoccupied
-	    Square currentSquare = new Square(row, column);
-	    Token currentToken = gameBoard.get(currentSquare);
-	    if(currentToken == null)
-	        gameBoard.put(currentSquare, token);
-	    else
-	        throw new IllegalArgumentException("ERROR: Square already occupied.");
-	    
-	    if(didLastPlayWin())
-	    {
-	        this.winner = token;
-	        this.isGameOver = true;
-	    }
-	}
+        if (row > this.boardSize || column > this.boardSize)
+            throw new IllegalArgumentException(
+                    String.format("ERROR: Your chose an invalid square. Row and column must be between 1 and %d", this.boardSize));
+        // If the game is already over, no more tokens can be played.
+        if (isGameOver)
+            throw new IllegalStateException(
+                    String.format("ERROR: This game is over already."));
 
-	/**
-     * Gets the winner of the game.
-     *
-     * @return The winning token, or null if the game is not yet over or if no one won.
+        // Place the token iff the square is unoccupied
+        Square currentSquare = new Square(row, column);
+        Token currentToken = gameBoard.get(currentSquare);
+        if (currentToken == null)
+            gameBoard.put(currentSquare, token);
+        else
+            throw new IllegalArgumentException("ERROR: Square already occupied.");
+
+        if (didLastPlayWin())
+        {
+            this.winner = token;
+            this.isGameOver = true;
+        }
+    }
+
+    /**
+     * Gets the winner of the game. 
+     * @return The winning token, or null if the game is not yet over or if no
+     *         one won.
      */
     public Token getWinner()
     {
