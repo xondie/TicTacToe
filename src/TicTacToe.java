@@ -119,34 +119,34 @@ public class TicTacToe
     }
     
     /**
-	 * Determine whether there are any unplayed spaces
-	 * left on the board.
-	 *
-	 * @return True of the board is full, otherwise false.
-	 */
-	public boolean isBoardFull()
-	{
-	    if(gameBoard.size() == boardSize*boardSize)
-	    {
-	        isGameOver = true;
-	        return true;
-	    }
-	    
-	    return false;
-	}
+     * Determine whether there are any unplayed spaces
+     * left on the board.
+     *
+     * @return True of the board is full, otherwise false.
+     */
+    public boolean isBoardFull()
+    {
+        if(gameBoard.size() == boardSize*boardSize)
+        {
+            isGameOver = true;
+            return true;
+        }
 
-	/**
-	 * Gets the last square that was played.
-	 */
-	private Square getLastPlayedSquare()
-	{
-	    if(gameBoard.isEmpty())
-	        return null;
-	    
-	    Square lastPlayedSquare = Iterables.getLast(gameBoard.keySet());
-	    
-	    return lastPlayedSquare;
-	}
+        return false;
+    }
+
+    /**
+     * Gets the last square that was played.
+     */
+    private Square getLastPlayedSquare()
+    {
+        if(gameBoard.isEmpty())
+            return null;
+
+        Square lastPlayedSquare = Iterables.getLast(gameBoard.keySet());
+
+        return lastPlayedSquare;
+    }
 
 	/**
      * Determine if the latest play resulted in a win.
